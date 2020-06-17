@@ -90,7 +90,7 @@
 
           <el-table-column label="操作" width="200" align="center">
             <template slot-scope="scope">
-              <el-button type="danger" size="mini" icon="el-icon-edit" @click="deleteAttrValueByName(scope.row.valueName)">删除</el-button>
+              <el-button type="danger" size="mini" icon="el-icon-edit" @click="deleteAttrValueById(scope.row.id, scope.row.attrId, scope.row.valueName)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -190,7 +190,28 @@ export default {
     },
 
     // 删除属性值
-    deleteAttrValueByName(attrValueName) {
+    deleteAttrValueById(id, attrId, attrValueName) {
+      if (id!=null) {
+        prop.deleteAttrValueById(id).then(response => {
+          // 获取属性值列表
+          prop.getAttrValueList(attrId).then(response => {
+            this.attrInfoForm.attrValueList = response.data
+            this.attrValueListLoading = false
+          })
+          // 显示表单
+          this.showAttrInfoForm = true
+        })
+      } else {
+        const tempList = []
+        this.attrInfoForm.attrValueList.forEach(attrValue => {
+          if (attrValue.valueName !== attrValueName) {
+            tempList.push(attrValue)
+          }
+        })
+        this.attrInfoForm.attrValueList = tempList
+      }
+    },
+    /*deleteAttrValueByName(attrValueName) {
       const tempList = []
       this.attrInfoForm.attrValueList.forEach(attrValue => {
         if (attrValue.valueName !== attrValueName) {
@@ -198,7 +219,7 @@ export default {
         }
       })
       this.attrInfoForm.attrValueList = tempList
-    },
+    },*/
 
     // 保存属性和属性值
     saveAttrInfo() {

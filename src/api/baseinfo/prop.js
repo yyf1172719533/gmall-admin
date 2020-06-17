@@ -49,5 +49,14 @@ export default {
       method: 'post',
       data: attrForm
     })
+  },
+
+
+  //删除属性值
+  deleteAttrValueById(id) {
+    return request({
+      url: 'deleteAttrValueById?id=' + id,
+      method: 'post',
+    })
   }
 }
