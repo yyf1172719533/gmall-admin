@@ -28,17 +28,17 @@ export default {
   },
 
   // 根据spuId获取销售属性列表
-  getSpuSaleAttrList(spuId) {
+  getSpuSaleAttrList(productId) {
     return request({
-      url: 'spuSaleAttrList?spuId=' + spuId,
+      url: 'spuSaleAttrList?productId=' + productId,
       method: 'get'
     })
   },
 
   // 根据spuId获取图片列表
-  getSpuImageList(spuId) {
+  getSpuImageList(productId) {
     return request({
-      url: 'spuImageList?spuId=' + spuId,
+      url: 'spuImageList?productId=' + productId,
       method: 'get'
     })
   }

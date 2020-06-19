@@ -59,8 +59,8 @@
       v-show="showSkuForm"
       ref="skuForm"
       :catalog-id="catalogId"
-      :spu-id="selectedSpu.spuId"
-      :spu-name="selectedSpu.spuName"
+      :product-id="selectedSpu.productId"
+      :product-name="selectedSpu.productName"
       @listenOnSave="onSkuSave()"
       @listenOnClose="onSkuClose()"/>
 
@@ -94,8 +94,8 @@ export default {
 
       // 选中的spu
       selectedSpu: {
-        spuId: null,
-        spuName: null
+        productId: null,
+        productName: null
       }
     }
   },
@@ -154,12 +154,12 @@ export default {
     },
 
     // 添加sku
-    addSku(spuId, spuName) {
-      this.selectedSpu.spuId = spuId
-      this.selectedSpu.spuName = spuName
+    addSku(productId, productName) {
+      this.selectedSpu.productId = productId
+      this.selectedSpu.productName = productName
 
       // 初始化表单
-      this.$refs.skuForm.init(spuId)
+      this.$refs.skuForm.init(productId)
 
       // 显示表单
       this.showSkuForm = true
